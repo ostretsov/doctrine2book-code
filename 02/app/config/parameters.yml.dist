@@ -1,0 +1,7 @@
+parameters:
+    database:   # I use PostgreSQL
+        host: localhost
+        port: 5432
+        name: doctrine2book_02
+        user: rufog
+        password: iddqd

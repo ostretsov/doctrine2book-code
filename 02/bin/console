@@ -1,7 +1,0 @@
-#!/usr/bin/env php
-<?php
-
-site_time_limit(0);
-
-require_once 'vendor/autoload.php';
-

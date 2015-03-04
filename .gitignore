@@ -1,2 +1,4 @@
-02/app/config/parameters.yml
-02/vendor
+.idea
+composer.lock
+app/config/parameters.yml
+vendor

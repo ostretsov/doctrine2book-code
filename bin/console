@@ -1,0 +1,42 @@
+#!/usr/bin/env php
+<?php
+
+use Doctrine\Common\ClassLoader;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
+use SecondChapter\Command\GetStatCommand;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Yaml\Yaml;
+
+// some general configs
+$isDevMode = true;
+$parametersFile = file_get_contents(dirname(__DIR__).'/app/config/parameters.yml');
+$paths = [dirname(__DIR__).'/src/Entity'];
+
+// preparation
+set_time_limit(0);
+require_once dirname(__DIR__).'/vendor/autoload.php';
+$parameters = Yaml::parse($parametersFile);
+
+// autoloading
+$secondChapter = new ClassLoader('SecondChapter', dirname(__DIR__).'/src');
+$secondChapter->register();
+
+// get EntityManager instance
+$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+$entityManager = EntityManager::create([
+        'host'      => $parameters['database']['host'],
+        'port'      => $parameters['database']['port'],
+        'driver'    => $parameters['database']['driver'],
+        'dbname'    => $parameters['database']['name'],
+        'user'      => $parameters['database']['user'],
+        'password'  => $parameters['database']['password']
+    ], $config);
+
+// commands
+$getStatCommand = new GetStatCommand();
+$getStatCommand->setEntityManager($entityManager);
+
+$application = new Application();
+$application->add($getStatCommand);
+$application->run();

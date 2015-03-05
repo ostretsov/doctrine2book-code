@@ -10,7 +10,7 @@ namespace SecondChapter\Command;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Console\Command\Command;
 
-class CommandWithEntityManager extends Command
+abstract class AbstractCommandWithEntityManager extends Command
 {
     /**
      * @var EntityManager

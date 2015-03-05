@@ -12,7 +12,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class GetStatCommand extends CommandWithEntityManager
+class GetStatCommand extends AbstractCommandWithEntityManager
 {
     const URL_GITHUB_SEARCH_API = 'https://api.github.com/search/repositories?q=language:%s&sort=stars&order=desc&page=%d';
 

@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+<?php
+
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
+
+require_once __DIR__.'/common.php';
+
+$helperSet = ConsoleRunner::createHelperSet($entityManager);
+ConsoleRunner::run($helperSet);

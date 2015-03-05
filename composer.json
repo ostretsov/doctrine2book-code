@@ -2,6 +2,7 @@
     "require": {
         "symfony/yaml": "~2.6",
         "symfony/console": "~2.6",
+        "guzzlehttp/guzzle": "5.2.0",
         "doctrine/orm": "~2.4"
     }
 }

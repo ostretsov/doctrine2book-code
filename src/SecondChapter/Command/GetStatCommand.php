@@ -6,6 +6,7 @@
 namespace SecondChapter\Command;
 
 
+use GuzzleHttp\Client;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -30,6 +31,10 @@ class GetStatCommand extends CommandWithEntityManager
     {
         $url = sprintf(self::URL_GITHUB_SEARCH_API, $input->getArgument('language'), $input->getOption('page'));
         $output->write(sprintf('Requesting github.com Search API with %s...', $url));
+
+        $client = new Client();
+        $response = $client->get($url);
+        $data = json_decode($response->getBody()->getContents(), true);
 
         $output->writeln('<info>Done</info>');
     }
